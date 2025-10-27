@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SkovatRaion:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SkovatRaion_jar</output-path>
+    <root id="archive" name="SkovatRaion.jar">
+      <element id="module-output" name="SkovatRaion" />
+    </root>
+  </artifact>
+</component>
