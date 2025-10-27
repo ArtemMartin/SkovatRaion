@@ -23,10 +23,6 @@ public class Main {
         //определяем расход на цель по количеству задач
         RashNaZel rashNaZel = new RashNaZel(kolSnarNaRaboty);
         rashNaZel.setList();
-        //получаем время для каждой задачи
-        ManagerIntervala managerIntervala = new ManagerIntervala(rashNaZel.getList().size(), intervalTime);
-        int[] timeZad = managerIntervala.getSpisVremen();
-        Arrays.sort(timeZad);
 
         System.out.println("Время начала работы: ");
         System.out.print("Часы - ");
@@ -35,13 +31,29 @@ public class Main {
         minyt = scanner.nextInt();
         time = LocalTime.parse(chas + ":" + minyt);
 
-        for (int i = 0; i < timeZad.length; i++) {
-            mapZad.put(getTime(timeZad[i]), new ZelRash(getNZeli(listZelei.getList()), rashNaZel.getList().get(i)));
-        }
+        int schetchik;
+        do {
+            //получаем время для каждой задачи
+            int[] timeZad = getTimeZadMeth(rashNaZel);
 
-        for (Map.Entry<String, ZelRash> entry : mapZad.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
-        }
+            for (int i = 0; i < timeZad.length; i++) {
+                mapZad.put(getTime(timeZad[i]), new ZelRash(getNZeli(listZelei.getList()), rashNaZel.getList().get(i)));
+            }
+
+            for (Map.Entry<String, ZelRash> entry : mapZad.entrySet()) {
+                System.out.println(entry.getKey() + " " + entry.getValue());
+            }
+            System.out.print("Прокрутить время задач ещё раз - 1, НЕТ - 0:");
+            schetchik = scanner.nextInt();
+            mapZad.clear();
+        } while (schetchik != 0);
+    }
+
+    private static int[] getTimeZadMeth(RashNaZel rashNaZel) {
+        ManagerIntervala managerIntervala = new ManagerIntervala(rashNaZel.getList().size(), intervalTime);
+        int[] timeZad = managerIntervala.getSpisVremen();
+        Arrays.sort(timeZad);
+        return timeZad;
     }
 
     public static String getNZeli(List<String> list) {
