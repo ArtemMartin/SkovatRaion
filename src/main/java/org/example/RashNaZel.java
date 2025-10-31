@@ -3,8 +3,11 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class RashNaZel {
+    Scanner scanner = new Scanner(System.in);
+    int ogranichitelRaschoda;
     List<Integer> list = new ArrayList<>();
     Random random = new Random();
     int rashNaZad;
@@ -21,6 +24,8 @@ public class RashNaZel {
     public void setList() {
         int schetchik = rashNaZad;
         int rashNaZel;
+        System.out.print("Установить максимальный расход на цель: ");
+        ogranichitelRaschoda = scanner.nextInt();
         while (schetchik > 0) {
             rashNaZel = getRashNaZel();
             list.add(rashNaZel);
@@ -32,8 +37,6 @@ public class RashNaZel {
 
     //генерируем расход на цель
     int getRashNaZel() {
-        return random.nextInt(4 - 1) + 1;
+        return random.nextInt(ogranichitelRaschoda) + 1;
     }
-
-
 }

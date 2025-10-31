@@ -21,15 +21,22 @@ public class Main {
         System.out.print("Ввести кол снар на работу: ");
         kolSnarNaRaboty = scanner.nextInt();
         //определяем расход на цель по количеству задач
-        RashNaZel rashNaZel = new RashNaZel(kolSnarNaRaboty);
-        rashNaZel.setList();
+        RashNaZel rashNaZel = getRashNaZel();
 
         System.out.println("Время начала работы: ");
         System.out.print("Часы - ");
         chas = scanner.nextInt();
         System.out.print("Минуты - ");
         minyt = scanner.nextInt();
-        time = LocalTime.parse(chas + ":" + minyt);
+        if (minyt < 10 && chas < 10) {
+            time = LocalTime.parse("0" + chas + ":" + "0" + minyt);
+        } else if (chas < 10) {
+            time = LocalTime.parse("0" + chas + ":" + minyt);
+        } else if (minyt < 10) {
+            time = LocalTime.parse(chas + ":" + "0" + minyt);
+        } else {
+            time = LocalTime.parse(chas + ":" + minyt);
+        }
 
         int schetchik;
         do {
@@ -43,10 +50,17 @@ public class Main {
             for (Map.Entry<String, ZelRash> entry : mapZad.entrySet()) {
                 System.out.println(entry.getKey() + " " + entry.getValue());
             }
-            System.out.print("Прокрутить время задач ещё раз - 1, НЕТ - 0:");
+            System.out.print("Прокрутить время задач и расход ещё раз - 1, НЕТ - 0:");
             schetchik = scanner.nextInt();
+            if (schetchik == 1) rashNaZel = getRashNaZel();
             mapZad.clear();
         } while (schetchik != 0);
+    }
+
+    private static RashNaZel getRashNaZel() {
+        RashNaZel rashNaZel = new RashNaZel(kolSnarNaRaboty);
+        rashNaZel.setList();
+        return rashNaZel;
     }
 
     private static int[] getTimeZadMeth(RashNaZel rashNaZel) {
