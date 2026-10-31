@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,8 +13,7 @@ public class ListZelei {
 
     //создаем список целей
     public void setList() {
-        String name;
-        String[] names;
+        if (!list.isEmpty()) list.clear();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Создать список целей:");
         int vvod = 1;

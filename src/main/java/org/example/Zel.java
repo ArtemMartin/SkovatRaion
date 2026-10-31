@@ -34,8 +34,8 @@ public class Zel {
     @Override
     public String toString() {
         return "Zel: " +
-                "name='" + name +
-                ", x=" + x +
-                ", y=" + y;
+                "name = " + name +
+                ", x = " + x +
+                ", y = " + y;
     }
 }

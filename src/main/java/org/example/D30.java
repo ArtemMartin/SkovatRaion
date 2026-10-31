@@ -15,7 +15,7 @@ public class D30 extends OS {
                 ", dovLeft = " + dovLeft +
                 ", dovRight = " + dovRight +
                 ", dalnMax = " + dalnMax +
-                ", dalnMin = " + dalnMin+
-                ", K-vo snar na raboty = ";
+                ", dalnMin = " + dalnMin +
+                ", K-vo snar na raboty = " + kolSnaNaRab;
     }
 }
