@@ -11,18 +11,21 @@ public class Main {
     static int minyt;
     static Map<String, ZelRash> mapZad = new LinkedHashMap<>();
     static LocalTime time;
+    static List<OS> listOS = new ArrayList<>();
+    static Map<OS, List<String>> mapOSZeli;
 
     public static void main(String[] args) {
+        //создаём список целей
         ListZelei listZelei = new ListZelei();
         listZelei.setList();
+        //Создаём список огневых средств
+        listOS = makeListOS();
+        //создаём Мап ОС - цели
+        ManagerOSZeli managerOSZeli = new ManagerOSZeli(listZelei.getList(), listOS);
+        mapOSZeli = managerOSZeli.getMapOSZeli();
 
         System.out.print("Ввести интервал времени для Огн Возд: ");
         intervalTime = scanner.nextInt();
-        System.out.print("Ввести кол снар на работу: ");
-        kolSnarNaRaboty = scanner.nextInt();
-        //определяем расход на цель по количеству задач
-        RashNaZel rashNaZel = getRashNaZel();
-
         System.out.println("Время начала работы: ");
         System.out.print("Часы - ");
         chas = scanner.nextInt();
@@ -38,23 +41,50 @@ public class Main {
             time = LocalTime.parse(chas + ":" + minyt);
         }
 
-        int schetchik;
+        //проходим по мапу ОС и целей
+        for (Map.Entry<OS, List<String>> entry2 : mapOSZeli.entrySet()) {
+            System.out.println("<<< План на " + entry2.getKey().getName()+" >>>");
+            kolSnarNaRaboty = entry2.getKey().getKolSnaNaRab();
+            //определяем расход на цель по количеству задач
+            RashNaZel rashNaZel = getRashNaZel();
+
+            int schetchik;
+            do {
+                //получаем время для каждой задачи
+                int[] timeZad = getTimeZadMeth(rashNaZel);
+
+                for (int i = 0; i < timeZad.length; i++) {
+                    mapZad.put(getTime(timeZad[i]), new ZelRash(getNZeli(entry2.getValue()), rashNaZel.getList().get(i)));
+                }
+
+                for (Map.Entry<String, ZelRash> entry : mapZad.entrySet()) {
+                    System.out.println(entry.getKey() + " " + entry.getValue());
+                }
+                System.out.print("Прокрутить время задач и расход ещё раз - 1, НЕТ - 0: ");
+                schetchik = scanner.nextInt();
+                if (schetchik == 1) rashNaZel = getRashNaZel();
+                mapZad.clear();
+            } while (schetchik != 0);
+        }
+    }
+
+    private static List<OS> makeListOS() {
+        List<OS> list = new ArrayList<>();
+        System.out.println("<< Создаём список ОП >>");
+        int vvod;
+        int vvod2;
         do {
-            //получаем время для каждой задачи
-            int[] timeZad = getTimeZadMeth(rashNaZel);
-
-            for (int i = 0; i < timeZad.length; i++) {
-                mapZad.put(getTime(timeZad[i]), new ZelRash(getNZeli(listZelei.getList()), rashNaZel.getList().get(i)));
+            System.out.print("Выбрать систему: Д30 - 0: ");
+            vvod2 = scanner.nextInt();
+            scanner.nextLine();
+            if (vvod2 == 0) {
+                list.add(new D30());
             }
-
-            for (Map.Entry<String, ZelRash> entry : mapZad.entrySet()) {
-                System.out.println(entry.getKey() + " " + entry.getValue());
-            }
-            System.out.print("Прокрутить время задач и расход ещё раз - 1, НЕТ - 0:");
-            schetchik = scanner.nextInt();
-            if (schetchik == 1) rashNaZel = getRashNaZel();
-            mapZad.clear();
-        } while (schetchik != 0);
+            System.out.print("Продолжить - 1, нет - 0: ");
+            vvod = scanner.nextInt();
+            scanner.nextLine();
+        } while (vvod == 1);
+        return list;
     }
 
     private static RashNaZel getRashNaZel() {

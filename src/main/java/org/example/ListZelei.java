@@ -6,12 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ListZelei {
-    List<String> list = new ArrayList<>();
+    List<Zel> list = new ArrayList<>();
 
-    public List<String> getList() {
+    public List<Zel> getList() {
         return list;
     }
-
 
     //создаем список целей
     public void setList() {
@@ -19,13 +18,22 @@ public class ListZelei {
         String[] names;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Создать список целей:");
-        System.out.print("Ввести номера целей(можно через пробел или другой разделитель): ");
-        name = scanner.nextLine();
-        if (!name.isEmpty()) {
-            names = name.split("\\W+");
-            Collections.addAll(list, names);
-        }
+        int vvod = 1;
+        do {
+            list.add(new Zel());
+            System.out.print("Продолжить - 1, нет - 0: ");
+            vvod = scanner.nextInt();
+            scanner.nextLine();
+        } while (vvod == 1);
         System.out.println("Список создан...");
         System.out.println("Размер - " + list.size());
+    }
+
+    //посмотреть список целей
+    public void watchList() {
+        System.out.println("<< Список целей >>");
+        for (Zel zel : list) {
+            System.out.println(zel);
+        }
     }
 }

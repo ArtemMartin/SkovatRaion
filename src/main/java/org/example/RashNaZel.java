@@ -32,7 +32,6 @@ public class RashNaZel {
             schetchik -= rashNaZel;
         }
         System.out.println("Список создан...");
-        System.out.println("Размер списка - " + list.size());
     }
 
     //генерируем расход на цель

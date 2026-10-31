@@ -19,6 +19,6 @@ public class ZelRash {
 
     @Override
     public String toString() {
-        return "цель = " + zel + ", расход = " + rash;
+        return "- цель = " + zel + ", расход = " + rash;
     }
 }
