@@ -9,14 +9,24 @@ public class Zel {
     private Scanner scanner = new Scanner(System.in);
 
     public Zel() {
-        System.out.println("<< Zel >>");
-        System.out.print("Ввести имя: ");
-        this.name = scanner.nextLine();
-        System.out.print("Ввести X: ");
-        this.x = scanner.nextDouble();
-        System.out.print("Ввести Y: ");
-        this.y = scanner.nextDouble();
-        scanner.nextLine();
+        int vvod;
+        do {
+            try {
+                System.out.println("<< Zel >>");
+                System.out.print("Ввести имя: ");
+                this.name = scanner.nextLine();
+                System.out.print("Ввести X: ");
+                this.x = scanner.nextDouble();
+                System.out.print("Ввести Y: ");
+                this.y = scanner.nextDouble();
+                scanner.nextLine();
+                vvod = 0;
+            } catch (Exception e) {
+                System.out.println("Ошибка ввода!!!");
+                scanner.nextLine();
+                vvod = 1;
+            }
+        } while (vvod == 1);
     }
 
     public String getName() {

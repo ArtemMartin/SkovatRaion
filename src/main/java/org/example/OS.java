@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public  class OS {
+public class OS {
     protected String name;
     protected double x;
     protected double y;
@@ -15,26 +15,36 @@ public  class OS {
     protected Scanner scanner = new Scanner(System.in);
 
     public OS() {
-        System.out.println("<<< Записываем ОС >>>");
-        System.out.print("Позывной: ");
-        this.name = scanner.nextLine();
-        System.out.print("Х: ");
-        this.x = scanner.nextDouble();
-        System.out.print("Y: ");
-        this.y = scanner.nextDouble();
-        System.out.print("OH: ");
-        this.ON = scanner.nextInt();
-        System.out.print("Доворот влево: ");
-        this.dovLeft = scanner.nextInt();
-        System.out.print("Доворот вправо: ");
-        this.dovRight = scanner.nextInt();
-        System.out.print("Дальность Макс: ");
-        this.dalnMax = scanner.nextInt();
-        System.out.print("Дальность Мин: ");
-        this.dalnMin = scanner.nextInt();
-        System.out.print("К-во снарядов на работу: ");
-        this.kolSnaNaRab = scanner.nextInt();
-        scanner.nextLine();
+        int vvod;
+        do {
+            try {
+                System.out.println("<<< Записываем ОС >>>");
+                System.out.print("Позывной: ");
+                this.name = scanner.nextLine();
+                System.out.print("Х: ");
+                this.x = scanner.nextDouble();
+                System.out.print("Y: ");
+                this.y = scanner.nextDouble();
+                System.out.print("OH: ");
+                this.ON = scanner.nextInt();
+                System.out.print("Доворот влево: ");
+                this.dovLeft = scanner.nextInt();
+                System.out.print("Доворот вправо: ");
+                this.dovRight = scanner.nextInt();
+                System.out.print("Дальность Макс: ");
+                this.dalnMax = scanner.nextInt();
+                System.out.print("Дальность Мин: ");
+                this.dalnMin = scanner.nextInt();
+                System.out.print("К-во снарядов на работу: ");
+                this.kolSnaNaRab = scanner.nextInt();
+                scanner.nextLine();
+                vvod = 0;
+            } catch (Exception e) {
+                System.out.println("Ошибка ввода!!!");
+                scanner.nextLine();
+                vvod = 1;
+            }
+        } while (vvod == 1);
     }
 
     public String getName() {
