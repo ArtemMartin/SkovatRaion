@@ -137,6 +137,9 @@ public class Main {
                     System.out.println("<<< План ОПП на " + formattedDateTime + " >>>");
                     watchTableTask();
                     System.out.println("В скобках за позывным расход на цель!!!");
+                    for (OS os : listOS) {
+                        System.out.println("'"+os.getName()+"'" + " Расход - " + os.getKolSnaNaRab());
+                    }
                     break;
                 case 9:
                     System.exit(0);
