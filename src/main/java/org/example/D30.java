@@ -1,8 +1,11 @@
 package org.example;
 
 public class D30 extends OS {
+
+
     public D30() {
         super();
+        sistema = "'D30'";
     }
 
     @Override

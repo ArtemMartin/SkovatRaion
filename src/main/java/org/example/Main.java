@@ -138,7 +138,7 @@ public class Main {
                     watchTableTask();
                     System.out.println("В скобках за позывным расход на цель!!!");
                     for (OS os : listOS) {
-                        System.out.println("'"+os.getName()+"'" + " Расход - " + os.getKolSnaNaRab());
+                        System.out.println(os.getSistema() + " - '" + os.getName() + "'" + " Расход: " + os.getKolSnaNaRab());
                     }
                     break;
                 case 9:
@@ -195,11 +195,16 @@ public class Main {
         int vvod;
         int vvod2;
         do {
-            System.out.print("Выбрать систему: Д30 - 0: ");
+            System.out.print("Выбрать систему: Д30 - 0, Козерог - 1, 2Б11 - 2: ");
             vvod2 = scanner.nextInt();
             scanner.nextLine();
             if (vvod2 == 0) {
                 list.add(new D30());
+            }else if (vvod2 == 1){
+                System.out.println("При вводе позывного через пробел добавить тип снаряда(ОФ или кас)");
+                list.add(new Kozerog());
+            }else if (vvod2 == 2){
+                list.add(new _2B11());
             }
             System.out.print("Продолжить - 1, нет - 0: ");
             vvod = scanner.nextInt();

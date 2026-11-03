@@ -13,6 +13,7 @@ public class OS {
     protected double dalnMin;
     protected int kolSnaNaRab;
     protected Scanner scanner = new Scanner(System.in);
+    protected  String sistema;
 
     public OS() {
         int vvod;
@@ -45,6 +46,10 @@ public class OS {
                 vvod = 1;
             }
         } while (vvod == 1);
+    }
+
+    public  String getSistema() {
+        return sistema;
     }
 
     public String getName() {
