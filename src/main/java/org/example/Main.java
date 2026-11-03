@@ -140,6 +140,7 @@ public class Main {
                     for (OS os : listOS) {
                         System.out.println(os.getSistema() + " - '" + os.getName() + "'" + " Расход: " + os.getKolSnaNaRab());
                     }
+                    PrintTableCeli.printTable(listZelei.getList());
                     break;
                 case 9:
                     System.exit(0);
