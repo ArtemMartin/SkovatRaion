@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class PrintTableCeli {
         List<String> headers = List.of("№ Celi", "X", "Y");
 
         // 3. Вычисляем ширину каждого столбца
-        Map<Integer, Integer> colWidths = new java.util.HashMap<>(Map.of(
+        Map<Integer, Integer> colWidths = new HashMap<>(Map.of(
                 0, headers.get(0).length(),
                 1, headers.get(1).length(),
                 2, headers.get(2).length()

@@ -5,4 +5,18 @@ public class Kozerog extends OS {
         super();
         sistema = "'Kozerog'";
     }
+
+    @Override
+    public String toString() {
+        return "sistema = '" + sistema +
+                ", name = '" + name +
+                ", x = " + x +
+                ", y = " + y +
+                ", ON = " + ON +
+                ", dovLeft = " + dovLeft +
+                ", dovRight = " + dovRight +
+                ", dalnMax = " + dalnMax +
+                ", dalnMin = " + dalnMin +
+                ", kolSnaNaRab = " + kolSnaNaRab;
+    }
 }
